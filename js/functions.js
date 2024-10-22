@@ -27,6 +27,22 @@ const getNumbersFromString = (input) => {
   return result ? parseInt(result, 10) : NaN;
 };
 
+//Функция, которая принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит.
+
+const isMeetingFitsWorktime = (workStartTime, workEndTime, meetingStartTime, meetingDuration) => {
+  const worktimeToMinutes = (time) => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+
+  const startWorkingMinutes = worktimeToMinutes(workStartTime);
+  const endWorkingMinutes = worktimeToMinutes(workEndTime);
+  const meetingStartMinutes = worktimeToMinutes(meetingStartTime);
+  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
+
+  return meetingStartMinutes >= startWorkingMinutes && meetingEndMinutes <= endWorkingMinutes;
+};
+
 //Проверка функций и вывод рузультата функций в консоль браузера
 
 /* eslint-disable no-alert, no-console */
@@ -49,4 +65,12 @@ console.log('Тест №6. Ожидаю NaN, получаю - ', getNumbersFrom
 console.log('Тест №7. Ожидаю 2023, получаю - ', getNumbersFromString(2023));
 console.log('Тест №8. Ожидаю 1, получаю - ', getNumbersFromString(-1));
 console.log('Тест №9. Ожидаю 15, получаю - ', getNumbersFromString(1.5));
+
+console.log('Проверяем функцию isMeetingFitsWorktime:');
+console.log('Тест №10. Ожидаю true, получаю - ', isMeetingFitsWorktime('08:00', '17:30', '14:00', 90));
+console.log('Тест №11. Ожидаю true, получаю - ', isMeetingFitsWorktime('8:0', '10:0', '8:0', 120));
+console.log('Тест №12. Ожидаю false, получаю - ', isMeetingFitsWorktime('08:00', '14:30', '14:00', 90));
+console.log('Тест №13. Ожидаю false, получаю - ', isMeetingFitsWorktime('14:00', '17:30', '08:0', 90));
+console.log('Тест №14. Ожидаю false, получаю - ', isMeetingFitsWorktime('8:00', '17:30', '08:00', 900));
+
 /* eslint-enable no-alert */
