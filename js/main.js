@@ -1,5 +1,4 @@
 import { getPictures } from './data';
+import { renderPictures } from './picture';
 
-/* eslint-disable no-alert, no-console */
-console.log(getPictures());
-/* eslint-enable no-alert */
+renderPictures(getPictures());
