@@ -12,7 +12,7 @@ const createPicture = (data) => {
   picture.querySelector('.picture__comments').textContent = comments.length;
   picture.querySelector('.picture__likes').textContent = likes;
 
-  picture.addEventListener('click', showBigPicture);
+  picture.addEventListener('click', () => showBigPicture(data));
 
   return picture;
 };
