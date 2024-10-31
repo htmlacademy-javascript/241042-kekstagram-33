@@ -29,11 +29,32 @@ const MESSAGES = [
 
 const SIMILAR_PICTURE_COUNT = 25;
 
-const createMessage = () => Array.from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(MESSAGES)).join('');
+const messagesCountRange = {
+  MIN: 1,
+  MAX: 2,
+};
+
+const avatarsRange = {
+  MIN: 1,
+  MAX: 6,
+};
+
+const likesCountRange = {
+  MIN: 15,
+  MAX: 200,
+};
+
+const commentsCountRange = {
+  MIN: 0,
+  MAX: 30,
+};
+
+
+const createMessage = () => Array.from({length: getRandomInteger(messagesCountRange.MIN, messagesCountRange.MAX)}, () => getRandomArrayElement(MESSAGES)).join('');
 
 const createComment = (index) => ({
   id: index,
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(avatarsRange.MIN, avatarsRange.MAX)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
@@ -42,8 +63,8 @@ const createPicture = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 30)}, (_, commentIndex) => createComment(commentIndex)),
+  likes: getRandomInteger(likesCountRange.MIN, likesCountRange.MAX),
+  comments: Array.from({length: getRandomInteger(commentsCountRange.MIN, commentsCountRange.MAX)}, (_, commentIndex) => createComment(commentIndex)),
 });
 
 const getPictures = () => Array.from({length: SIMILAR_PICTURE_COUNT}, (_, pictureIndex) => createPicture(pictureIndex + 1));
