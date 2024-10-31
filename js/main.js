@@ -1,4 +1,6 @@
 import { getPictures } from './data';
 import { renderPictures } from './picture';
 
-renderPictures(getPictures());
+const picturesContainer = document.querySelector('.pictures');
+
+renderPictures(getPictures(), picturesContainer);
