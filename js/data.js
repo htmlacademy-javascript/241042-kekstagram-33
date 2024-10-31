@@ -49,7 +49,6 @@ const CommentsCountRange = {
   MAX: 30,
 };
 
-
 const createMessage = () => Array.from({length: getRandomInteger(MessagesCountRange.MIN, MessagesCountRange.MAX)}, () => getRandomArrayElement(MESSAGES)).join('');
 
 const createComment = (index) => ({
@@ -65,6 +64,7 @@ const createPicture = (index) => ({
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(LikesCountRange.MIN, LikesCountRange.MAX),
   comments: Array.from({length: getRandomInteger(CommentsCountRange.MIN, CommentsCountRange.MAX)}, (_, commentIndex) => createComment(commentIndex)),
+
 });
 
 const getPictures = () => Array.from({length: SIMILAR_PICTURE_COUNT}, (_, pictureIndex) => createPicture(pictureIndex + 1));
