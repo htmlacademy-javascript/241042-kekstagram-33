@@ -29,7 +29,6 @@ const MESSAGES = [
 
 const SIMILAR_PICTURE_COUNT = 25;
 
-
 const createMessage = () => Array.from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(MESSAGES)).join('');
 
 const createComment = (index) => ({
