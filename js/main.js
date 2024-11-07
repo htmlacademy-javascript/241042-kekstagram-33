@@ -1,4 +1,3 @@
-//Отключаем моковые данные с data.js
 //import { getPictures } from './data';
 import { renderPictures } from './picture';
 import { getData, sendData } from './api.js';
