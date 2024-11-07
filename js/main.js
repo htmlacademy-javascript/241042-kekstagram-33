@@ -1,7 +1,23 @@
-import { getPictures } from './data';
+//Отключаем моковые данные с data.js
+//import { getPictures } from './data';
 import { renderPictures } from './picture';
-import './form.js';
+import { getData, sendData } from './api.js';
+import { showAlert } from './util.js';
+import { setOnFormSubmit, hideModal } from './form.js';
+import { showSuccessMessage, showErrorMessage } from './message.js';
 
-const picturesContainer = document.querySelector('.pictures');
 
-renderPictures(getPictures(), picturesContainer);
+const onSendDataSuccess = () => {
+  hideModal();
+  showSuccessMessage();
+};
+
+const onSendDataError = () => {
+  showErrorMessage();
+};
+
+setOnFormSubmit(async (data) => {
+  await sendData(onSendDataSuccess, onSendDataError, data);
+});
+
+getData(renderPictures, showAlert);
