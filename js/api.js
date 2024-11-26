@@ -1,15 +1,14 @@
-const getData = async (onSuccess, onFail) => {
+const getData = async (onSuccess, onFail, container) => {
   try {
-    const response = await fetch (
+    const response = await fetch(
       'https://32.javascript.htmlacademy.pro/kekstagram/data'
     );
 
     if (!response.ok) {
-      throw new Error('Не удалост загрузить фотографии');
+      throw new Error('Не удалось загрузить фотографии');
     }
 
     const offers = await response.json();
-    const container = document.querySelector('.pictures');
 
     onSuccess(offers, container);
   } catch (error) {

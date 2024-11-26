@@ -1,10 +1,10 @@
-//import { getPictures } from './data';
-import { renderPictures } from './picture';
+import { renderPictures } from './picture.js';
 import { getData, sendData } from './api.js';
 import { showAlert } from './util.js';
 import { setOnFormSubmit, hideModal } from './form.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 
+const pictureContainer = document.querySelector('.pictures');
 
 const onSendDataSuccess = () => {
   hideModal();
@@ -12,6 +12,7 @@ const onSendDataSuccess = () => {
 };
 
 const onSendDataError = () => {
+  hideModal();
   showErrorMessage();
 };
 
@@ -19,4 +20,4 @@ setOnFormSubmit(async (data) => {
   await sendData(onSendDataSuccess, onSendDataError, data);
 });
 
-getData(renderPictures, showAlert);
+getData(renderPictures, showAlert, pictureContainer);
