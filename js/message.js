@@ -7,20 +7,21 @@ const errorMessage = document
 const body = document.querySelector('body');
 
 const showSuccessMessage = () => {
-  body.append(successMessage);
-  body.addEventListener('keydown', onEscDown);
-  body.addEventListener('click', onBodyClick);
   successMessage
     .querySelector('.success__button')
     .addEventListener('click', hideMessage);
+  body.append(successMessage);
+  body.addEventListener('keydown', onEscDown);
+  body.addEventListener('click', onBodyClick);
 };
 
 const showErrorMessage = () => {
-  body.append(errorMessage);
-  body.addEventListener('keydown', onEscDown);
   errorMessage
     .querySelector('.error__button')
     .addEventListener('click', hideMessage);
+  body.append(errorMessage);
+  body.addEventListener('keydown', onEscDown);
+
 };
 
 function hideMessage() {

@@ -1,6 +1,7 @@
 import { debounce } from './util.js';
 
 const PICTURES_COUNT = 10;
+
 const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
@@ -34,8 +35,8 @@ const turnFilterOn = (loadedPictures) => {
   currentFilter = Filter.DEFAULT;
 };
 
-const setOnFilterClick = (cb) => {
-  const debouncedCallback = debounce(cb);
+const setOnFilterClick = (onClick) => {
+  const debouncedCallback = debounce(onClick);
 
   filtersElement.addEventListener('click', (evt) => {
     if (!evt.target.classList.contains('img-filters__button')) {
