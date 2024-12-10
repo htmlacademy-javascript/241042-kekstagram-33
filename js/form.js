@@ -1,9 +1,9 @@
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 
-const body = document.querySelector('body');
-const overlay = document.querySelector('.img-upload__overlay');
 const form = document.querySelector('.img-upload__form');
+const overlay = document.querySelector('.img-upload__overlay');
+const body = document.querySelector('body');
 const cancelButton = document.querySelector('#upload-cancel');
 const fileField = document.querySelector('#upload-file');
 const hashtagField = document.querySelector('.text__hashtags');
@@ -37,7 +37,9 @@ const hideModal = () => {
   document.removeEventListener('keydown', onEscKeyDown);
 };
 
-const isTextFieldFocused = () => document.activeElement === hashtagField || document.activeElement === commentField;
+const isTextFieldFocused = () =>
+  document.activeElement === hashtagField ||
+  document.activeElement === commentField;
 
 function onEscKeyDown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
@@ -46,17 +48,23 @@ function onEscKeyDown(evt) {
   }
 }
 
-const onCancelButtonClick = () => hideModal();
+const onCancelButtonClick = () => {
+  hideModal();
+};
 
-const onFileInputChange = () => showModal();
+const onFileInputChange = () => {
+  showModal();
+};
 
 const startsWithHash = (string) => string[0] === '#';
 
-const hasValidLength = (string) => string.length >= MIN_HASHTAG_LENGTH && string.length <= MAX_HASHTAG_LENGTH;
+const hasValidLength = (string) =>
+  string.length >= MIN_HASHTAG_LENGTH && string.length <= MAX_HASHTAG_LENGTH;
 
 const hasValidSymbols = (string) => !UNVALID_SYMBOLS.test(string.slice(1));
 
-const isValidTag = (tag) => startsWithHash(tag) && hasValidLength(tag) && hasValidSymbols(tag);
+const isValidTag = (tag) =>
+  startsWithHash(tag) && hasValidLength(tag) && hasValidSymbols(tag);
 
 const hasValidCount = (tags) => tags.length <= MAX_HASHTAG_COUNT;
 
@@ -66,7 +74,10 @@ const hasUniqueTags = (tags) => {
 };
 
 const validateTags = (value) => {
-  const tags = value.trim().split(' ').filter((tag) => tag.trim().length);
+  const tags = value
+    .trim()
+    .split(' ')
+    .filter((tag) => tag.trim().length);
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
@@ -83,7 +94,7 @@ const unblockSubmitButton = () => {
 pristine.addValidator(
   hashtagField,
   validateTags,
-  'Неправильный хэштег'
+  'Неправильно заполнены хэштеги'
 );
 
 const setOnFormSubmit = (cb) => {

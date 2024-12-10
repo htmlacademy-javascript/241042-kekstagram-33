@@ -1,30 +1,42 @@
-import { showBigPicture } from './big-picture';
+import { showBigPicture } from './big-picture.js';
 
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
+const container = document.querySelector('.pictures');
 
-const createPicture = (data) => {
-  const { comments, description, likes, url } = data;
+const createPicture = (pictureData) => {
+  const {url, description, likes, comments} = pictureData;
 
-  const picture = pictureTemplate.cloneNode(true);
+  const pictureElement = pictureTemplate.cloneNode(true);
 
-  picture.querySelector('.picture__img').src = url;
-  picture.querySelector('.picture__img').alt = description;
-  picture.querySelector('.picture__comments').textContent = comments.length;
-  picture.querySelector('.picture__likes').textContent = likes;
+  pictureElement.querySelector('.picture__img').src = url;
+  pictureElement.querySelector('.picture__img').alt = description;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  pictureElement.querySelector('.picture__likes').textContent = likes;
 
-  picture.addEventListener('click', () => showBigPicture(data));
+  const onPictureElementClick = (evt) => {
+    evt.preventDefault();
+    showBigPicture(pictureData);
+  };
 
-  return picture;
+  pictureElement.addEventListener('click', onPictureElementClick);
+
+  return pictureElement;
 };
 
-const renderPictures = (pictures, container) => {
+const renderPictures = (picturesData) => {
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
+
   const fragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
-    const pictureElement = createPicture(picture);
+
+  picturesData.forEach((pictureData) => {
+    const pictureElement = createPicture(pictureData);
     fragment.appendChild(pictureElement);
   });
 
-  container.append(fragment);
+  container.appendChild(fragment);
 };
 
-export { renderPictures };
+export {renderPictures};
+
