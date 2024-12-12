@@ -1,3 +1,4 @@
+const COMMENTS_COUNT_TO_SHOW_AND_TO_LOAD = 5;
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
@@ -5,7 +6,6 @@ const commentsLoader = document.querySelector('.comments-loader');
 const commentList = document.querySelector('.social__comments');
 const cancelButton = document.querySelector('.big-picture__cancel');
 
-const COMMENTS_COUNT_TO_SHOW_AND_TO_LOAD = 5;
 let commentsShown = 0;
 let comments = [];
 

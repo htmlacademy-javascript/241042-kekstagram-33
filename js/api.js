@@ -25,7 +25,7 @@ const getData = async (onSuccess, onFail, container) => {
 const sendData = async (onSuccess, onFail, body) => {
   try {
     const response = await fetch(
-      `${BASE_URL}${Route.GET_DATA}`,
+      `${BASE_URL}${Route.SEND_DATA}`,
       {
         method: 'POST',
         body,
