@@ -1,6 +1,12 @@
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 
+const MAX_HASHTAG_COUNT = 5;
+const MIN_HASHTAG_LENGTH = 2;
+const MAX_HASHTAG_LENGTH = 20;
+const UNVALID_SYMBOLS = /[^a-zA-Z0-9а-яА-ЯёЁ]/g;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -11,12 +17,6 @@ const commentField = document.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
 const photoPreview = document.querySelector('.img-upload__preview img');
 const effectsPreviews = document.querySelectorAll('.effects__preview');
-
-const MAX_HASHTAG_COUNT = 5;
-const MIN_HASHTAG_LENGTH = 2;
-const MAX_HASHTAG_LENGTH = 20;
-const UNVALID_SYMBOLS = /[^a-zA-Z0-9а-яА-ЯёЁ]/g;
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
